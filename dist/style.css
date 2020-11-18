@@ -1,0 +1,36 @@
+#input-container {
+    display: grid;
+    grid-template-columns: 1fr 0fr;
+}
+
+button {
+    width: max-content;
+    margin-right: 2vw;
+}
+
+#roster-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2vh;
+    margin-top: 10px
+}
+
+.player-container {
+    display: grid;
+    grid-template-rows: 0fr 0fr 1fr 0fr;
+    justify-content: center;
+    background-color: orange;
+    box-shadow: black 2px 2px 8px;
+}
+
+.text {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+img {
+    box-shadow: black 2px 2px 8px;
+    background-color: grey;
+}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+</head>
+
+<body>
+
+    <div id="input-container">
+        <input>
+        <button>Get roster</button>
+    </div>
+    <div id="roster-container"></div>
+
+
+
+
+    <script id="player-template" type="text/x-handlebars-template">
+        {{#each roster}}
+        <div class="player-container">
+            <div class="text">{{firstName}} {{lastName}}</div>
+            <div class="text">{{jersey}}</div>
+            <img src="https://nba-players.herokuapp.com/players/{{lastName}}/{{firstName}}">
+            <div class="text">{{pos}}</div>
+        </div>
+        {{/each}}
+    </script>
+    <script src="./handlebars/dist/handlebars.js"></script>
+    <script src="./jquery/dist/jquery.js"></script>
+    <script src="render.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>
