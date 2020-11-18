@@ -23,6 +23,15 @@ app.get('/teams/:teamName', function(request, mainResponse) {
     })
 })
 
+app.get('/playerStats/:player', function(request, mainResponse) {
+    const firstName = request.params.player.split(" ")[0]
+    const lastName = request.params.player.split(" ")[1]
+    urllib.request(`https://nba-players.herokuapp.com/players-stats/${lastName}/${firstName}`, (err, response, res) => {
+        if (response.toString() !== "Sorry, that player was not found. Please check the spelling.")
+            mainResponse.send({ stats: JSON.parse(response) })
+    }, )
+})
+
 const port = 3000
 app.listen(port, function() {
     console.log(`Running server on port ${port}`)

@@ -23,10 +23,20 @@
             <div class="text">{{firstName}} {{lastName}}</div>
             <div class="text">{{jersey}}</div>
             <img src="https://nba-players.herokuapp.com/players/{{lastName}}/{{firstName}}">
+            <div class="stats"></div>
             <div class="text">{{pos}}</div>
         </div>
         {{/each}}
     </script>
+
+    <script id="stats-template" type="text/x-handlebars-template">
+        <div style="display: grid; grid-template-rows: auto;">
+            {{#each stats}}
+            <div>{{@key}} = {{this}}</div>
+            {{/each}}
+        </div>
+    </script>
+
     <script src="./handlebars/dist/handlebars.js"></script>
     <script src="./jquery/dist/jquery.js"></script>
     <script src="render.js"></script>

@@ -30,7 +30,20 @@ button {
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
+.stats {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
 img {
     box-shadow: black 2px 2px 8px;
     background-color: grey;
+}
+
+.stats {
+    background-color: grey;
+    box-shadow: black 2px 2px 8px;
+    display: none;
 }
