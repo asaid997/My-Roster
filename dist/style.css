@@ -5,6 +5,12 @@
 
 button {
     width: max-content;
+    background-color: rgb(50, 173, 173);
+    border-radius: 5px;
+    height: 5vh;
+    font-weight: 3vh;
+    color: white;
+    border: none;
     margin-right: 2vw;
 }
 
@@ -21,6 +27,22 @@ button {
     justify-content: center;
     background-color: orange;
     box-shadow: black 2px 2px 8px;
+    position: relative;
+}
+
+.dream-team {
+    position: absolute;
+    top: 2px;
+    right: 0px;
+    color: white;
+    font-size: 2vh;
+    background-color: #68792159;
+    font-weight: bold;
+    visibility: hidden;
+}
+
+.dream-team:active {
+    background-color: #242b0c59;
 }
 
 .text {
@@ -35,15 +57,12 @@ button {
     justify-content: center;
     align-content: center;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    background-color: grey;
+    box-shadow: black 2px 2px 8px;
+    display: none;
 }
 
 img {
     box-shadow: black 2px 2px 8px;
     background-color: grey;
-}
-
-.stats {
-    background-color: grey;
-    box-shadow: black 2px 2px 8px;
-    display: none;
 }

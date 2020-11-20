@@ -9,8 +9,11 @@
 <body>
 
     <div id="input-container">
-        <input>
-        <button>Get roster</button>
+        <input value="lakers">
+        <button id="get-roster">Get roster</button>
+    </div>
+    <div style="display: grid;">
+        <button id="get-dream-team" style="justify-self: center;">The dream team</button>
     </div>
     <div id="roster-container"></div>
 
@@ -20,11 +23,14 @@
     <script id="player-template" type="text/x-handlebars-template">
         {{#each roster}}
         <div class="player-container">
-            <div class="text">{{firstName}} {{lastName}}</div>
-            <div class="text">{{jersey}}</div>
-            <img src="https://nba-players.herokuapp.com/players/{{lastName}}/{{firstName}}">
+            <div class="text name">{{firstName}} {{lastName}}</div>
+            {{#if dreamPlayer}}
+            <button class="remove-from-dream-team dream-team"><i class="fas fa-minus"></i>remove</button> {{else}}
+            <button class="add-to-dream-team dream-team"><i class="fas fa-plus"></i>Dream team</button> {{/if}}
+            <div class="text jersey">{{jersey}}</div>
+            <img src="https://nba-players.herokuapp.com/players/{{lastName}}/{{firstName}}" onerror="this.src='https://placeimg.com/200/300/animals'">
             <div class="stats"></div>
-            <div class="text">{{pos}}</div>
+            <div class="text pos">{{pos}}</div>
         </div>
         {{/each}}
     </script>
@@ -37,6 +43,7 @@
         </div>
     </script>
 
+    <script src="./@fortawesome/fontawesome-free/js/all.js"></script>
     <script src="./handlebars/dist/handlebars.js"></script>
     <script src="./jquery/dist/jquery.js"></script>
     <script src="render.js"></script>
