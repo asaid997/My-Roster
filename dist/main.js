@@ -1,25 +1,22 @@
 const renderer = new Renderer()
+const serverManager = new ServerManager()
 
 $('#get-roster').on("click", function() {
-    const input = $('input').val()
-    $.get(`/teams/${input}`, function(data) {
-        renderer.playerHandleBarHelper(data)
-    })
+    const teamName = $('input').val()
+    serverManager.getTeam(teamName, renderer.playerHandleBarHelper)
 })
 
 $('#roster-container').on("click", "img", function() {
     const stats = $(this).closest(".player-container").find(".stats")
     const fullName = $(this).closest(".player-container").find('div:first-child').text()
-    $.get(`/playerStats/${fullName}`, (data) => {
-        $(this).css("display", "none")
-        stats.css("display", "grid")
-        renderer.statsHandleBarHelper(data, stats)
-    })
+    const img = $(this)
+    serverManager.showStats(img, stats, fullName, renderer.statsHandleBarHelper)
 })
 
 $('#roster-container').on("click", ".stats", function() {
-    $(this).css("display", "none")
-    $(this).closest(".player-container").find("img").css("display", "grid")
+    const img = $(this).closest(".player-container").find("img")
+    const stats = $(this)
+    renderer.switchDisplay(stats, img)
 })
 
 $('#roster-container').on('click', '.add-to-dream-team', function() {
@@ -29,22 +26,14 @@ $('#roster-container').on('click', '.add-to-dream-team', function() {
     const jersey = $(this).closest('.player-container').find('.jersey').text()
     const pos = $(this).closest('.player-container').find('.pos').text()
     const player = { firstName, lastName, jersey, pos, dreamPlayer: true }
-    $.post(`/roster/${JSON.stringify(player)}`, (data) => {})
+    serverManager.addToDreamTeam(player)
 })
 
 $('#roster-container').on('click', '.remove-from-dream-team', function() {
     const name = $(this).closest('.player-container').find('.name').text()
-    $.ajax({
-        url: `/roster/${name}`,
-        type: 'DELETE',
-        success: function(data) {
-            renderer.playerHandleBarHelper(data)
-        }
-    });
+    serverManager.removeFromDreamTeam(name, renderer.playerHandleBarHelper)
 })
 
 $('#get-dream-team').on("click", function() {
-    $.get('/dreamTeam', function(data) {
-        renderer.playerHandleBarHelper(data)
-    })
+    serverManager.getDreamTeam(renderer.playerHandleBarHelper)
 })

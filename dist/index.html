@@ -12,8 +12,15 @@
         <input value="lakers">
         <button id="get-roster">Get roster</button>
     </div>
-    <div style="display: grid;">
-        <button id="get-dream-team" style="justify-self: center;">The dream team</button>
+    <div style="display: grid; position: relative; grid-template-columns: 1fr 1fr; width: 100vw;">
+        <button id="get-dream-team" style="justify-self: end;">The dream team</button>
+        <div style="justify-self: end; display: grid; justify-content: end; grid-template-columns: 1fr 1fr;">
+            <input id="new-team"><button id="new-team-save">Save team</button>
+        </div>
+        <select id="my-teams" style="position: absolute;  visibility: visible;">
+            <option>erios</option>
+            <option>zobe</option>
+        </select>
     </div>
     <div id="roster-container"></div>
 
@@ -46,6 +53,7 @@
     <script src="./@fortawesome/fontawesome-free/js/all.js"></script>
     <script src="./handlebars/dist/handlebars.js"></script>
     <script src="./jquery/dist/jquery.js"></script>
+    <script src="server-manager.js"></script>
     <script src="render.js"></script>
     <script src="main.js"></script>
 </body>

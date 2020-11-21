@@ -25,14 +25,17 @@ const _removeFromDreamTeam = (name) => {
 }
 const _getDreamTeam = () => { return { roster: _dreamTeam } }
 
-router.get('/teams/:teamName', function(request, mainResponse) {
+router.get('/teams/:teamName', function(request, response) {
     const { teamName } = request.params
-    urllib.request('http://data.nba.net/10s/prod/v1/2017/players.json', (err, response) => {
-        mainResponse.send({
-            roster: JSON.parse(response).league.standard.filter(player => player.isActive && player.teamId === _teamToIDs[teamName]).map(player => {
-                return { firstName: player.firstName, lastName: player.lastName, jersey: player.jersey, pos: player.pos }
+    urllib.request('http://data.nba.net/10s/prod/v1/2017/players.json', (err, _response) => {
+        if (!err)
+            response.send({
+                roster: JSON.parse(_response).league.standard.filter(player => player.isActive && player.teamId === _teamToIDs[teamName]).map(player => {
+                    return { firstName: player.firstName, lastName: player.lastName, jersey: player.jersey, pos: player.pos }
+                })
             })
-        })
+        else
+            response.send(err.name)
     })
 })
 
@@ -40,17 +43,18 @@ router.get('/playerStats/:player', function(request, response) {
     const firstName = request.params.player.split(" ")[0]
     const lastName = request.params.player.split(" ")[1]
     urllib.request(`https://nba-players.herokuapp.com/players-stats/${lastName}/${firstName}`, (err, _response, res) => {
-        if (_response && _response.toString() !== "Sorry, that player was not found. Please check the spelling.")
-            response.send({ stats: JSON.parse(_response) })
-        else
-            response.send(err)
+        if (!err) {
+            if (_response && _response.toString() !== "Sorry, that player was not found. Please check the spelling.")
+                response.send({ stats: JSON.parse(_response) })
+        } else
+            response.send(err.name)
     }, )
 })
 
 router.put('/team/:team', function(req, res) {
     const newTeam = JSON.parse(req.params.team)
     _teamToIDs[newTeam.teamName] = newTeam.teamId
-    res.end()
+    res.send(_teamToIDs)
 })
 
 router.get('/dreamTeam', function(req, res) {

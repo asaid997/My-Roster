@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const path = require('path')
+const { nextTick } = require('process')
 const api = require('./server/routes/api.js')
 
 app.use(express.static(path.join(__dirname, 'node_modules')))
