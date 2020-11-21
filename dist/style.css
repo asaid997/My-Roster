@@ -1,10 +1,23 @@
 #input-container {
     display: grid;
-    grid-template-columns: 1fr 0fr;
+    grid-template-columns: 14fr 1fr;
 }
 
-button,
-select {
+#new-team-container {
+    position: absolute;
+    visibility: hidden;
+    right: 0;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+}
+
+#second-row {
+    display: grid;
+    position: relative;
+    margin-top: 0.1vh;
+}
+
+button, select {
     width: max-content;
     background-color: rgb(50, 173, 173);
     border-radius: 5px;
@@ -12,14 +25,18 @@ select {
     font-weight: 3vh;
     color: white;
     border: none;
-    margin-right: 2vw;
+    box-shadow: black 2px 2px 8px;
+}
+button:active {
+    font-size: 2vh;
 }
 
 #roster-container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 2vh;
-    margin-top: 10px
+    margin-top: 10px;
+    padding: 10px;
 }
 
 .player-container {
@@ -36,7 +53,7 @@ select {
     top: 2px;
     right: 0px;
     color: white;
-    font-size: 2vh;
+    font-size: 1.5vh;
     background-color: #68792159;
     font-weight: bold;
     visibility: hidden;

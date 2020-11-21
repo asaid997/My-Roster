@@ -4,16 +4,10 @@ class Renderer {
         const statsSource = $('#stats-template').html();
         this.template = Handlebars.compile(source);
         this.statsTemplate = Handlebars.compile(statsSource);
-
-        $('#roster-container').on('mouseenter', '.player-container',
-            function() {
-                $(this).find('button').css("visibility", "visible")
-            })
-        $('#roster-container').on('mouseleave', '.player-container',
-            function() {
-                $(this).find('button').css("visibility", "hidden")
-            })
     }
+
+    showElement = element => element.css("visibility", "visible")
+    hideElement = element => element.css("visibility", "hidden")
 
     switchDisplay(element1, element2) {
         element1.css("display", "none")

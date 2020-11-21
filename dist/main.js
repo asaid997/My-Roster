@@ -1,6 +1,10 @@
 const renderer = new Renderer()
 const serverManager = new ServerManager()
 
+$('#roster-container').on('mouseenter', '.player-container',function() {renderer.showElement($(this).find('button'))})
+$('#roster-container').on('mouseleave', '.player-container',function() {renderer.hideElement($(this).find('button'))})
+
+
 $('#get-roster').on("click", function() {
     const teamName = $('input').val()
     serverManager.getTeam(teamName, renderer.playerHandleBarHelper)
