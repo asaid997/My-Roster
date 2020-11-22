@@ -1,7 +1,7 @@
 const renderer = new Renderer()
 const serverManager = new ServerManager()
 
-serverManager.getMyTeams(renderer.myTeamsHandleBarHelper)
+serverManager.getMyTeams(renderer.myTeamsHandleBarAppender)
 
 $('#roster-container').on('mouseenter', '.player-container', function () { renderer.showElement($(this).find('button')) })
 $('#roster-container').on('mouseleave', '.player-container', function () { renderer.hideElement($(this).find('button')) })
@@ -9,14 +9,14 @@ $('#roster-container').on('mouseleave', '.player-container', function () { rende
 
 $('#get-roster').on("click", function () {
     const teamName = $('input').val()
-    serverManager.getTeam(teamName, renderer.playerHandleBarHelper)
+    serverManager.getTeam(teamName, renderer.playerHandleBarAppender)
 })
 
 $('#roster-container').on("click", "img", function () {
     const stats = $(this).closest(".player-container").find(".stats")
     const fullName = $(this).closest(".player-container").find('div:first-child').text()
     const img = $(this)
-    serverManager.showStats(img, stats, fullName, renderer.statsHandleBarHelper)
+    serverManager.showStats(img, stats, fullName, renderer.statsHandleBarAppender)
 })
 
 $('#roster-container').on("click", ".stats", function () {
@@ -37,23 +37,23 @@ $('#roster-container').on('click', '.add-to-dream-team', function () {
 
 $('#roster-container').on('click', '.remove-from-dream-team', function () {
     const name = $(this).closest('.player-container').find('.name').text()
-    serverManager.removeFromDreamTeam(name, renderer.dreamTeamHelper)
+    serverManager.removeFromDreamTeam(name, renderer.dreamTeamAppender)
 })
 
-$('#get-dream-team').on("click", () => serverManager.getDreamTeam(renderer.dreamTeamHelper))
+$('#get-dream-team').on("click", () => serverManager.getDreamTeam(renderer.dreamTeamAppender))
 
 $('#new-team-save').on("click", function () {
     const teamName = $('#new-team').val()
     if (teamName === "")
         alert("Enter team name before saving")
     else {
-        serverManager.saveNewTeam(teamName, renderer.myTeamsHandleBarHelper)
-        renderer.playerHandleBarHelper()
+        serverManager.saveNewTeam(teamName, renderer.myTeamsHandleBarAppender)
+        renderer.playerHandleBarAppender()
     }
     $('#new-team').val("")
 })
 
 function changeTeam() {
     const teamName = $('#my-teams').val()
-    serverManager.getMyTeam(teamName, renderer.playerHandleBarHelper)
+    serverManager.getMyTeam(teamName, renderer.playerHandleBarAppender)
 }

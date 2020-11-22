@@ -26,7 +26,7 @@ class Renderer {
         this._handleBarAppender($('#roster-container'), this._template, roster)
     }
 
-    dreamTeamHAppender = (data) => {
+    dreamTeamAppender = (data) => {
         this.playerHandleBarAppender(data)
         if (data.roster.length > 0) {
             this.showElement($('#new-team-container'))
