@@ -1,0 +1,92 @@
+#input-container {
+    display: grid;
+    grid-template-columns: 14fr 1fr;
+}
+
+#new-team-container {
+    position: absolute;
+    visibility: hidden;
+    right: 0;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+}
+
+#second-row {
+    display: grid;
+    position: relative;
+    margin-top: 0.1vh;
+}
+
+.stats-container {
+    display: grid;
+    grid-template-rows: auto;
+}
+
+button, select {
+    width: max-content;
+    background-color: rgb(50, 173, 173);
+    border-radius: 5px;
+    height: 5vh;
+    font-weight: 3vh;
+    color: white;
+    border: none;
+    box-shadow: black 2px 2px 8px;
+}
+
+button:active {
+    font-size: 2vh;
+}
+
+#roster-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2vh;
+    margin-top: 10px;
+    padding: 10px;
+}
+
+.player-container {
+    display: grid;
+    grid-template-rows: 0fr 0fr 1fr 0fr;
+    justify-content: center;
+    background-color: orange;
+    box-shadow: black 2px 2px 8px;
+    position: relative;
+}
+
+.dream-team {
+    position: absolute;
+    top: 2px;
+    right: 0px;
+    color: white;
+    font-size: 1.5vh;
+    background-color: #68792159;
+    font-weight: bold;
+    visibility: hidden;
+}
+
+.dream-team:active {
+    background-color: #242b0c59;
+}
+
+.text {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.stats {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    background-color: grey;
+    box-shadow: black 2px 2px 8px;
+    display: none;
+}
+
+img {
+    box-shadow: black 2px 2px 8px;
+    background-color: grey;
+}

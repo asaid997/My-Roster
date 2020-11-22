@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+</head>
+
+<body style="margin: 0;">
+
+    <div id="input-container">
+        <input value="lakers" placeholder="Team">
+        <button id="get-roster" style="width: 100%;">Get roster</button>
+    </div>
+    <div id="second-row">
+        <button id="get-dream-team" style="justify-self: center;">The dream team</button>
+        <div id="new-team-container">
+            <input id="new-team" placeholder="New team name"><button id="new-team-save">Save team</button>
+        </div>
+        <div class="my-teams-container" style="position: absolute;">
+            <div style="display: inline;">My teams</div>
+            <select id="my-teams" onchange="changeTeam()">
+            </select>
+        </div>
+    </div>
+    <div id="roster-container"></div>
+
+
+
+
+    <script id="player-template" type="text/x-handlebars-template">
+        {{#each roster}}
+        <div class="player-container">
+            <div class="text name">{{firstName}} {{lastName}}</div>
+            {{#if dreamPlayer}}
+                <button class="remove-from-dream-team dream-team"><i class="fas fa-minus"></i>Remove</button> 
+            {{else}}
+                <button class="add-to-dream-team dream-team"><i class="fas fa-plus"></i>Dream team</button> 
+            {{/if}}
+            <div class="text jersey">{{jersey}}</div>
+            <img src="https://nba-players.herokuapp.com/players/{{lastName}}/{{firstName}}" onerror="this.src='https://placeimg.com/200/300/animals'">
+            <div class="stats"></div>
+            <div class="text pos">{{pos}}</div>
+        </div>
+        {{/each}}
+    </script>
+
+    <script id="stats-template" type="text/x-handlebars-template">
+        <div style="display: grid; grid-template-rows: auto;">
+            {{#each stats}}
+            <div>{{@key}} = {{this}}</div>
+            {{/each}}
+        </div>
+    </script>
+
+    <script id="team-template" type="text/x-handlebars-template">
+        {{#each teams}}
+            <option value="{{this}}">{{this}}</option>
+        {{/each}}
+    </script>
+
+    <script src="./@fortawesome/fontawesome-free/js/all.js"></script>
+    <script src="./handlebars/dist/handlebars.js"></script>
+    <script src="./jquery/dist/jquery.js"></script>
+    <script src="server-manager.js"></script>
+    <script src="render.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>
