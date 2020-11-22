@@ -17,9 +17,11 @@
         <div id="new-team-container">
             <input id="new-team" placeholder="New team name"><button id="new-team-save">Save team</button>
         </div>
-        <select id="my-teams" style="position: absolute;">
-            <option value="" disabled selected>My teams</option>
-        </select>
+        <div class="my-teams-container" style="position: absolute;">
+            <div style="display: inline;">My teams</div>
+            <select id="my-teams" onchange="changeTeam()">
+            </select>
+        </div>
     </div>
     <div id="roster-container"></div>
 
@@ -31,7 +33,7 @@
         <div class="player-container">
             <div class="text name">{{firstName}} {{lastName}}</div>
             {{#if dreamPlayer}}
-                <button class="remove-from-dream-team dream-team"><i class="fas fa-minus"></i>remove</button> 
+                <button class="remove-from-dream-team dream-team"><i class="fas fa-minus"></i>Remove</button> 
             {{else}}
                 <button class="add-to-dream-team dream-team"><i class="fas fa-plus"></i>Dream team</button> 
             {{/if}}
@@ -49,6 +51,12 @@
             <div>{{@key}} = {{this}}</div>
             {{/each}}
         </div>
+    </script>
+
+    <script id="team-template" type="text/x-handlebars-template">
+        {{#each teams}}
+            <option value="{{this}}">{{this}}</option>
+        {{/each}}
     </script>
 
     <script src="./@fortawesome/fontawesome-free/js/all.js"></script>

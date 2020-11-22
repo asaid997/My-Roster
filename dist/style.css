@@ -27,6 +27,7 @@ button, select {
     border: none;
     box-shadow: black 2px 2px 8px;
 }
+
 button:active {
     font-size: 2vh;
 }
