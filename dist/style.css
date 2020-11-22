@@ -17,6 +17,11 @@
     margin-top: 0.1vh;
 }
 
+.stats-container {
+    display: grid;
+    grid-template-rows: auto;
+}
+
 button, select {
     width: max-content;
     background-color: rgb(50, 173, 173);

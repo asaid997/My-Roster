@@ -11,10 +11,9 @@ class Renderer {
     showElement = element => element.css("visibility", "visible")
     hideElement = element => element.css("visibility", "hidden")
 
-    _handleBarHelper = (elementToAppendTo, Template, data) => {
-        elementToAppendTo.empty();
+    _handleBarAppender = (elementToAppendTo, Template, data) => {
         let newHTML = Template(data);
-        elementToAppendTo.append(newHTML);
+        elementToAppendTo.empty().append(newHTML);
     }
 
     switchDisplay(element1, element2) {
@@ -22,23 +21,23 @@ class Renderer {
         element2.css("display", "grid")
     }
 
-    playerHandleBarHelper = (roster) => {
+    playerHandleBarAppender = (roster) => {
         this.hideElement($('#new-team-container'))
-        this._handleBarHelper($('#roster-container'), this._template, roster)
+        this._handleBarAppender($('#roster-container'), this._template, roster)
     }
 
-    dreamTeamHelper = (data) => {
-        this.playerHandleBarHelper(data)
+    dreamTeamHAppender = (data) => {
+        this.playerHandleBarAppender(data)
         if (data.roster.length > 0) {
             this.showElement($('#new-team-container'))
         }
     }
 
-    statsHandleBarHelper = (stats, elementToAppendTo, imageElement) => {
+    statsHandleBarAppender = (stats, elementToAppendTo, imageElement) => {
         this.switchDisplay(imageElement, elementToAppendTo)
-        this._handleBarHelper($(elementToAppendTo), this._statsTemplate, stats)
+        this._handleBarAppender($(elementToAppendTo), this._statsTemplate, stats)
     }
 
-    myTeamsHandleBarHelper = (teams) => this._handleBarHelper($('#my-teams'), this._myTeamsTemplate, { teams })
+    myTeamsHandleBarAppender = (teams) => this._handleBarAppender($('#my-teams'), this._myTeamsTemplate, { teams })
 
 }

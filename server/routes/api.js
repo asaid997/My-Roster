@@ -22,7 +22,7 @@ const _newDreamTeam = () => {
     _dreamPlayers = {}
 }
 
-const _ifPlayerIsInDreamTeam = (name) => {
+const _ifPlayerIsNotInDreamTeam = (name) => {
     if (_dreamPlayers[name] === undefined || _dreamPlayers[name] === false) {
         _dreamPlayers[name] = true
         return true
@@ -50,8 +50,7 @@ router.get('/teams/:teamName', function (request, response) {
 })
 
 router.get('/playerStats/:player', function (request, response) {
-    const firstName = request.params.player.split(" ")[0]
-    const lastName = request.params.player.split(" ")[1]
+    const [firstName, lastName] = request.params.player.split(" ")
     urllib.request(`https://nba-players.herokuapp.com/players-stats/${lastName}/${firstName}`, (err, _response, res) => {
         if (!err) {
             if (_response && _response.toString() !== "Sorry, that player was not found. Please check the spelling.")
@@ -67,13 +66,11 @@ router.put('/team/:team', function (req, res) {
     res.send(_teamToIDs)
 })
 
-router.get('/dreamTeam', function (req, res) {
-    res.send(_getDreamTeam())
-})
+router.get('/dreamTeam', (req, res) => res.send(_getDreamTeam()))
 
 router.post('/roster/:player', function (req, res) {
     const player = JSON.parse(req.params.player)
-    if (_ifPlayerIsInDreamTeam(`${player.firstName} ${player.lastName}`))
+    if (_ifPlayerIsNotInDreamTeam(`${player.firstName} ${player.lastName}`))
         _dreamTeam.push(player)
     res.send(_dreamTeam)
 })
